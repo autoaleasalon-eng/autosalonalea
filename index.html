@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="sq" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Sallon Alea | Përvoja Automobilistike Luksoze</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .page-section { display: none; opacity: 0; transition: opacity 0.4s ease-in-out; }
+        .page-section.active { display: block; opacity: 1; }
+        
+        /* Custom Smooth Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-[#080b11] text-slate-100 font-sans antialiased overflow-x-hidden">
+
+    <!-- NAVIGACIONI -->
+    <nav class="sticky top-0 z-50 bg-[#080b11]/95 backdrop-blur-md border-b border-slate-800/40 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+            
+            <a href="javascript:void(0)" onclick="showPage('home-page')" class="flex items-center group ml-2 md:ml-6">
+                <img src="logo_2.jpg" alt="Auto Sallon Alea Logo" class="h-14 sm:h-18 md:h-20 w-auto object-contain py-1 transition-transform duration-300 group-hover:scale-105" style="mix-blend-mode: screen;">
+            </a>
+
+            <!-- Menuja për Desktop -->
+            <div class="hidden md:flex items-center space-x-8 text-xs font-bold tracking-widest text-slate-300 uppercase">
+                <button onclick="showPage('home-page')" id="nav-home-page" class="nav-btn text-red-600 border-b-2 border-red-600 pb-1 transition">HOME</button>
+                <button onclick="showPage('vetura-page')" id="nav-vetura-page" class="nav-btn hover:text-red-500 transition">VETURA</button>
+                <button onclick="showPage('brendet-page')" id="nav-brendet-page" class="nav-btn hover:text-red-500 transition">BRENDET</button>
+                <button onclick="showPage('perne-page')" id="nav-perne-page" class="nav-btn hover:text-red-500 transition">PËR NE</button>
+                <button onclick="showPage('kontakt-page')" id="nav-kontakt-page" class="nav-btn hover:text-red-500 transition">KONTAKT</button>
+                <button onclick="showPage('admin-page')" id="nav-admin-page" class="nav-btn hover:text-red-500 transition text-red-500 border border-red-600/40 px-3 py-1 rounded-lg"><i class="fa-solid fa-lock mr-1"></i> ADMIN</button>
+            </div>
+
+            <!-- Butoni i Telefonit & Burger Menu për Mobile -->
+            <div class="flex items-center gap-3">
+                <a href="tel:+38348838848" class="hidden sm:flex items-center gap-2 border border-red-600/80 hover:bg-red-600/10 text-white font-bold px-3.5 py-2 rounded-lg text-xs transition tracking-wider">
+                    <i class="fa-solid fa-phone text-red-600 animate-pulse"></i> +383 48 838 848
+                </a>
+                
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-slate-300 hover:text-white p-2 focus:outline-none">
+                    <i id="menu-icon" class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#0e131d] border-b border-slate-800 px-6 py-4 space-y-3 animate-fade-in">
+            <button onclick="showPage('home-page'); toggleMobileMenu();" class="block w-full text-left text-xs font-bold text-slate-300 hover:text-red-500 uppercase py-2">HOME</button>
+            <button onclick="showPage('vetura-page'); toggleMobileMenu();" class="block w-full text-left text-xs font-bold text-slate-300 hover:text-red-500 uppercase py-2">VETURA</button>
+            <button onclick="showPage('brendet-page'); toggleMobileMenu();" class="block w-full text-left text-xs font-bold text-slate-300 hover:text-red-500 uppercase py-2">BRENDET</button>
+            <button onclick="showPage('perne-page'); toggleMobileMenu();" class="block w-full text-left text-xs font-bold text-slate-300 hover:text-red-500 uppercase py-2">PËR NE</button>
+            <button onclick="showPage('kontakt-page'); toggleMobileMenu();" class="block w-full text-left text-xs font-bold text-slate-300 hover:text-red-500 uppercase py-2">KONTAKT</button>
+            <button onclick="showPage('admin-page'); toggleMobileMenu();" class="block w-full text-left text-xs font-bold text-red-500 hover:text-red-400 uppercase py-2"><i class="fa-solid fa-lock mr-1"></i> ADMIN</button>
+            <a href="tel:+38348838848" class="flex items-center justify-center gap-2 bg-red-600 text-white font-bold py-2.5 rounded-lg text-xs mt-2">
+                <i class="fa-solid fa-phone"></i> +383 48 838 848
+            </a>
+        </div>
+    </nav>
+
+    <!-- 1. FAQJA KRYESORE (HOME) -->
+    <div id="home-page" class="page-section active animate-fade-in">
+        <!-- HERO SECTION -->
+        <section class="relative min-h-[85vh] flex items-center overflow-hidden bg-[#080b11]">
+            <div class="absolute inset-0 z-0">
+                <img src="hero-bg.jpg" class="w-full h-full object-cover object-center filter brightness-110 contrast-105 scale-105 transition-transform duration-1000" alt="Auto Sallon Alea">
+                <div class="absolute inset-0 bg-gradient-to-r from-[#080b11]/80 via-[#080b11]/40 to-transparent"></div>
+            </div>
+
+            <div class="relative z-20 max-w-7xl mx-auto px-6 w-full py-16">
+                <div class="max-w-xl space-y-4 animate-fade-in">
+                    <span class="inline-block text-xs font-bold uppercase tracking-widest text-red-600 bg-red-600/10 px-3 py-1 rounded-md border border-red-600/20">AUTO SALLON ALEA</span>
+                    <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight uppercase leading-none drop-shadow-md">
+                        ZGJIDH MAKINËN<br>
+                        <span class="text-red-600">TUAJ TË ËNDRRAVE.</span>
+                    </h1>
+                    <p class="text-sm text-slate-300 font-medium max-w-md leading-relaxed pt-2">
+                        Çdo udhëtim nis me zgjedhjen e duhur. Auto Sallon Alea ju sjell stokin më të freskët të veturave premium me shërbim profesional dhe financim të sigurt.
+                    </p>
+                    <div class="pt-4 flex flex-wrap gap-4">
+                        <button onclick="showPage('vetura-page')" class="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white font-bold px-7 py-3.5 rounded-xl text-xs uppercase tracking-wider transition shadow-lg shadow-red-600/40 hover:scale-105 transform duration-200">
+                            KËRKONI VETURËN <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SHIRITI I VEÇORIVE -->
+        <section class="relative z-30 bg-[#080b11] border-y border-slate-800/80 py-8">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="bg-[#0e131d] border border-slate-800/80 rounded-2xl p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 shadow-2xl">
+                    <div class="flex items-center gap-4 group hover:translate-x-1 transition duration-300">
+                        <div class="w-12 h-12 bg-red-600/10 border border-red-600/20 rounded-xl flex items-center justify-center text-red-600 text-2xl flex-shrink-0 group-hover:bg-red-600 group-hover:text-white transition"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div><h4 class="text-xs font-extrabold text-white uppercase tracking-wider">GARANCI</h4><p class="text-[11px] text-slate-400 mt-0.5">Për çdo makinë</p></div>
+                    </div>
+                    <div class="flex items-center gap-4 group hover:translate-x-1 transition duration-300">
+                        <div class="w-12 h-12 bg-red-600/10 border border-red-600/20 rounded-xl flex items-center justify-center text-red-600 text-2xl flex-shrink-0 group-hover:bg-red-600 group-hover:text-white transition"><i class="fa-solid fa-award"></i></div>
+                        <div><h4 class="text-xs font-extrabold text-white uppercase tracking-wider">KUALITET</h4><p class="text-[11px] text-slate-400 mt-0.5">Makinat më të mira</p></div>
+                    </div>
+                    <div class="flex items-center gap-4 group hover:translate-x-1 transition duration-300">
+                        <div class="w-12 h-12 bg-red-600/10 border border-red-600/20 rounded-xl flex items-center justify-center text-red-600 text-2xl flex-shrink-0 group-hover:bg-red-600 group-hover:text-white transition"><i class="fa-regular fa-thumbs-up"></i></div>
+                        <div><h4 class="text-xs font-extrabold text-white uppercase tracking-wider">BESUESHMËRI</h4><p class="text-[11px] text-slate-400 mt-0.5">Shërbim i garantuar</p></div>
+                    </div>
+                    <div class="flex items-center gap-4 group hover:translate-x-1 transition duration-300">
+                        <div class="w-12 h-12 bg-red-600/10 border border-red-600/20 rounded-xl flex items-center justify-center text-red-600 text-2xl flex-shrink-0 group-hover:bg-red-600 group-hover:text-white transition"><i class="fa-solid fa-headset"></i></div>
+                        <div><h4 class="text-xs font-extrabold text-white uppercase tracking-wider">MBËSHTETJE</h4><p class="text-[11px] text-slate-400 mt-0.5">24/7 për ju</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KOLEKSIONI I VEÇANTË (TOP 4 VETURA) -->
+        <section class="py-20 max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+                <div>
+                    <span class="text-red-600 text-xs font-bold uppercase tracking-widest bg-red-600/10 px-3 py-1 rounded-md border border-red-600/20">Top 4 Vetura</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Koleksioni i Veçantë</h2>
+                    <p class="text-xs text-slate-400 mt-2">Makinat më ekskluzive të përzgjedhura në sallonin tonë.</p>
+                </div>
+                <button onclick="showPage('vetura-page')" class="text-xs font-bold text-red-500 hover:text-red-400 flex items-center gap-2 uppercase tracking-wider transition group">
+                    SHIKO TË GJITHA STOKET <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i>
+                </button>
+            </div>
+
+            <div id="topCarsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Top 4 Veturat do të renderohen nga JavaScript -->
+            </div>
+        </section>
+    </div>
+
+    <!-- 2. FAQJA E VETURAVE -->
+    <div id="vetura-page" class="page-section animate-fade-in">
+        <section class="py-16 max-w-7xl mx-auto px-6">
+            <div class="text-center mb-10">
+                <span class="text-red-600 text-xs font-bold uppercase tracking-widest bg-red-600/10 px-3 py-1 rounded-md border border-red-600/20">Kërko në stok</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Gjeni Veturën Tuaj Ideale</h2>
+                <p class="text-xs text-slate-400 mt-2">Përzgjidhni kriteret e mëposhtme për të filtruar stokin tonë.</p>
+            </div>
+
+            <!-- TABELA E KËRKIMIT -->
+            <div class="bg-[#0e131d] border border-slate-800 p-6 sm:p-8 rounded-3xl shadow-2xl mb-16 max-w-5xl mx-auto">
+                <form id="filterForm" onsubmit="event.preventDefault(); filterCars();" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">BRENDET</label>
+                        <select id="filterBrand" onchange="filterCars()" class="w-full bg-[#080b11] border border-slate-800 rounded-xl px-4 py-3.5 text-sm text-slate-200 focus:outline-none focus:border-red-600 transition">
+                            <option value="">Të gjitha brendet</option>
+                            <option value="mercedes">Mercedes-Benz</option>
+                            <option value="bmw">BMW</option>
+                            <option value="audi">Audi</option>
+                            <option value="volkswagen">Volkswagen</option>
+                            <option value="rangerover">Range Rover</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Viti Minimal</label>
+                        <select id="filterYear" onchange="filterCars()" class="w-full bg-[#080b11] border border-slate-800 rounded-xl px-4 py-3.5 text-sm text-slate-200 focus:outline-none focus:border-red-600 transition">
+                            <option value="">Çfarëdo viti</option>
+                            <option value="2024">2024</option>
+                            <option value="2022">2022</option>
+                            <option value="2020">2020</option>
+                            <option value="2018">2018</option>
+                            <option value="2016">2016</option>
+                            <option value="2014">2014</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Karburanti</label>
+                        <select id="filterFuel" onchange="filterCars()" class="w-full bg-[#080b11] border border-slate-800 rounded-xl px-4 py-3.5 text-sm text-slate-200 focus:outline-none focus:border-red-600 transition">
+                            <option value="">Të gjitha</option>
+                            <option value="nafte">Naftë (Diesel)</option>
+                            <option value="benzine">Benzinë</option>
+                            <option value="hibrid">Hibrid</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">NDËRRUESI I MARSHEVE</label>
+                        <select id="filterGear" onchange="filterCars()" class="w-full bg-[#080b11] border border-slate-800 rounded-xl px-4 py-3.5 text-sm text-slate-200 focus:outline-none focus:border-red-600 transition">
+                            <option value="">Të gjithë</option>
+                            <option value="automatik">Automatik</option>
+                            <option value="manual">Manual</option>
+                        </select>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider">Çmimi Maksimal</label>
+                            <span id="priceValue" class="text-xs font-extrabold text-red-500">250,000 €</span>
+                        </div>
+                        <input type="range" id="priceRange" min="5000" max="250000" step="5000" value="250000" 
+                               oninput="document.getElementById('priceValue').innerText = Number(this.value).toLocaleString() + ' €'; filterCars();"
+                               class="w-full h-2 bg-[#080b11] rounded-lg appearance-none cursor-pointer accent-red-600">
+                        <div class="flex justify-between text-[10px] text-slate-500 mt-1 font-semibold">
+                            <span>5,000 €</span>
+                            <span>250,000 €</span>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-3 pt-2 flex flex-col sm:flex-row gap-4">
+                        <button type="button" onclick="filterCars()" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-4 rounded-xl text-xs uppercase tracking-wider transition shadow-lg shadow-red-600/30 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-magnifying-glass"></i> KËRKO VETURËN
+                        </button>
+                        <button type="button" onclick="resetFilters()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold px-6 py-4 rounded-xl text-xs uppercase tracking-wider transition">
+                            Pastro
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- LISTA E MAKINAVE -->
+            <div class="mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-800 pb-4 gap-2">
+                <h3 class="text-xl font-bold text-white uppercase tracking-wider">Makinat në Stok</h3>
+                <span id="carCount" class="text-xs font-bold text-slate-400">Gjithsej: 0 Vetura</span>
+            </div>
+
+            <div id="carsGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Veturat do të renderohen këtu nga JavaScript -->
+            </div>
+            <div id="noResults" class="hidden text-center py-12 text-slate-400 text-sm">
+                Nuk u gjet asnjë veturë me kriteret e përzgjedhura.
+            </div>
+        </section>
+    </div>
+
+    <!-- MODAL / DRITARE POP-UP PËR DETAJET E MAKINËS -->
+    <div id="carModal" class="fixed inset-0 z-[100] hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto transition-opacity duration-300">
+        
+        <button onclick="closeModal()" class="fixed top-4 right-4 sm:absolute sm:top-6 sm:right-6 z-[110] w-12 h-12 bg-slate-900/90 hover:bg-red-600 text-white rounded-full flex items-center justify-center transition border border-white/20 shadow-2xl cursor-pointer" style="top: max(16px, env(safe-area-inset-top));">
+            <i class="fa-solid fa-xmark text-xl"></i>
+        </button>
+
+        <div class="bg-[#0e131d] border border-slate-800 w-full max-w-6xl rounded-3xl overflow-hidden shadow-2xl relative my-auto animate-fade-in">
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 items-center">
+                
+                <!-- Imazhi i Vetures -->
+                <div class="lg:col-span-7 h-[50vh] sm:h-[65vh] lg:h-[72vh] bg-black relative flex items-center justify-center overflow-hidden">
+                    <img id="modalImg" src="" alt="" class="w-full h-full object-contain object-center transition-all duration-300">
+                    <span id="modalPrice" class="absolute bottom-4 left-4 bg-red-600 text-white font-black text-sm px-4 py-2 rounded-xl shadow-lg"></span>
+                    
+                    <button onclick="prevCarImage()" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition border border-white/10 cursor-pointer shadow-lg z-10">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button onclick="nextCarImage()" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition border border-white/10 cursor-pointer shadow-lg z-10">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                    <span id="imgCounter" class="absolute top-4 left-4 bg-black/70 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-lg border border-white/10 z-10 shadow">1 / 1</span>
+                </div>
+
+                <!-- Detajet -->
+                <div class="lg:col-span-5 p-6 sm:p-8 space-y-5 bg-[#0e131d]">
+                    <div>
+                        <span class="text-red-600 text-[10px] font-black tracking-widest uppercase">Auto Sallon Alea</span>
+                        <h2 id="modalTitle" class="text-2xl font-extrabold text-white mt-1"></h2>
+                        <p id="modalSub" class="text-xs text-slate-400 font-semibold mt-1"></p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3 text-xs">
+                        <div class="bg-[#080b11] p-3 rounded-xl border border-slate-800/80">
+                            <span class="text-slate-400 block text-[10px] uppercase font-bold">Viti</span>
+                            <span id="modalYear" class="font-bold text-white"></span>
+                        </div>
+                        <div class="bg-[#080b11] p-3 rounded-xl border border-slate-800/80">
+                            <span class="text-slate-400 block text-[10px] uppercase font-bold">Kilometrat</span>
+                            <span id="modalKm" class="font-bold text-white"></span>
+                        </div>
+                        <div class="bg-[#080b11] p-3 rounded-xl border border-slate-800/80">
+                            <span class="text-slate-400 block text-[10px] uppercase font-bold">Transmisioni</span>
+                            <span id="modalGear" class="font-bold text-white"></span>
+                        </div>
+                        <div class="bg-[#080b11] p-3 rounded-xl border border-slate-800/80">
+                            <span class="text-slate-400 block text-[10px] uppercase font-bold">Karburanti</span>
+                            <span id="modalFuel" class="font-bold text-white"></span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-1.5">Përshkrimi & Pajisjet</h4>
+                        <p id="modalDesc" class="text-xs text-slate-400 leading-relaxed"></p>
+                    </div>
+
+                    <div class="pt-2 flex flex-col sm:flex-row gap-3">
+                        <a href="tel:+38348838848" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider transition text-center flex items-center justify-center gap-2 shadow-lg shadow-red-600/20">
+                            <i class="fa-solid fa-phone"></i> Thirr Tani
+                        </a>
+                        <a id="modalWhatsapp" href="https://wa.me/38348838848" target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl text-xs uppercase tracking-wider transition text-center flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20">
+                            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 3. FAQJA E BRENDVE -->
+    <div id="brendet-page" class="page-section animate-fade-in">
+        <section class="py-16 max-w-7xl mx-auto px-6 text-center">
+            <span class="text-red-600 text-xs font-bold uppercase tracking-widest bg-red-600/10 px-3 py-1 rounded-md border border-red-600/20">Partnerët Tanë</span>
+            <h2 class="text-3xl font-extrabold text-white mt-2 mb-3">Brendet me të Cilat Punojmë</h2>
+            <p class="text-xs text-slate-400 mb-12 max-w-xl mx-auto">Markat kryesore që mund t'i gjeni apo porositni në sallonin tonë.</p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 max-w-6xl mx-auto">
+                <div class="bg-[#0e131d] border border-slate-800 p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-red-600 hover:scale-105 transition duration-300 group shadow-md">
+                    <img src="mercedes.png" alt="Mercedes-Benz" class="h-10 w-auto object-contain">
+                    <span class="text-xs font-bold text-slate-300 uppercase">Mercedes-Benz</span>
+                </div>
+                <div class="bg-[#0e131d] border border-slate-800 p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-red-600 hover:scale-105 transition duration-300 group shadow-md">
+                    <img src="bmw.png" alt="BMW" class="h-10 w-auto object-contain">
+                    <span class="text-xs font-bold text-slate-300 uppercase">BMW</span>
+                </div>
+                <div class="bg-[#0e131d] border border-slate-800 p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-red-600 hover:scale-105 transition duration-300 group shadow-md">
+                    <img src="audi.png" alt="Audi" class="h-10 w-auto object-contain">
+                    <span class="text-xs font-bold text-slate-300 uppercase">Audi</span>
+                </div>
+                <div class="bg-[#0e131d] border border-slate-800 p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-red-600 hover:scale-105 transition duration-300 group shadow-md">
+                    <img src="volkswagen.png" alt="Volkswagen" class="h-10 w-auto object-contain">
+                    <span class="text-xs font-bold text-slate-300 uppercase">Volkswagen</span>
+                </div>
+                <div class="bg-[#0e131d] border border-slate-800 p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-red-600 hover:scale-105 transition duration-300 group shadow-md">
+                    <img src="rangerover.png" alt="Range Rover" class="h-10 w-auto object-contain">
+                    <span class="text-xs font-bold text-slate-300 uppercase">Range Rover</span>
+                </div>
+                <div class="bg-[#0e131d] border border-slate-800 p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-red-600 hover:scale-105 transition duration-300 group shadow-md">
+                    <img src="jaguar.png" alt="Jaguar" class="h-10 w-auto object-contain">
+                    <span class="text-xs font-bold text-slate-300 uppercase">Jaguar</span>
+                </div>
+                <div class="bg-[#0e131d] border border-slate-800 p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-red-600 hover:scale-105 transition duration-300 group shadow-md">
+                    <img src="opel.png" alt="Opel" class="h-10 w-auto object-contain">
+                    <span class="text-xs font-bold text-slate-300 uppercase">Opel</span>
+                </div>
+                <div class="bg-[#0e131d] border border-slate-800 p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-red-600 hover:scale-105 transition duration-300 group shadow-md">
+                    <img src="maserati.png" alt="Maserati" class="h-10 w-auto object-contain">
+                    <span class="text-xs font-bold text-slate-300 uppercase">Maserati</span>
+                </div>
+                <div class="bg-[#0e131d] border border-slate-800 p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-red-600 hover:scale-105 transition duration-300 group shadow-md">
+                    <img src="porsche.png" alt="Porsche" class="h-10 w-auto object-contain">
+                    <span class="text-xs font-bold text-slate-300 uppercase">Porsche</span>
+                </div>
+                <div class="bg-[#0e131d] border border-slate-800 p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-red-600 hover:scale-105 transition duration-300 group shadow-md">
+                    <img src="citroen.png" alt="Citroen" class="h-10 w-auto object-contain">
+                    <span class="text-xs font-bold text-slate-300 uppercase">Citroen</span>
+                </div>
+                <div class="bg-[#0e131d] border border-slate-800 p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-red-600 hover:scale-105 transition duration-300 group shadow-md">
+                    <img src="jeep.png" alt="Jeep" class="h-10 w-auto object-contain">
+                    <span class="text-xs font-bold text-slate-300 uppercase">Jeep</span>
+                </div>
+                <div class="bg-[#0e131d] border border-slate-800 p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-red-600 hover:scale-105 transition duration-300 group shadow-md">
+                    <img src="fiat.png" alt="Fiat" class="h-10 w-auto object-contain">
+                    <span class="text-xs font-bold text-slate-300 uppercase">Fiat</span>
+                </div>
+                <div class="bg-[#0e131d] border border-slate-800 p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-red-600 hover:scale-105 transition duration-300 group shadow-md">
+                    <img src="ford.png" alt="Ford" class="h-10 w-auto object-contain">
+                    <span class="text-xs font-bold text-slate-300 uppercase">Ford</span>
+                </div>
+                <div class="bg-[#0e131d] border border-slate-800 p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-red-600 hover:scale-105 transition duration-300 group shadow-md">
+                    <img src="alfaromeo.png" alt="Alfa Romeo" class="h-10 w-auto object-contain">
+                    <span class="text-xs font-bold text-slate-300 uppercase">Alfa Romeo</span>
+                </div>
+                <div class="bg-[#0e131d] border border-slate-800 p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-red-600 hover:scale-105 transition duration-300 group shadow-md">
+                    <img src="renault.png" alt="Renault" class="h-10 w-auto object-contain">
+                    <span class="text-xs font-bold text-slate-300 uppercase">Renault</span>
+                </div>
+                <div class="bg-[#0e131d] border border-slate-800 p-6 rounded-2xl flex flex-col items-center justify-center gap-3 hover:border-red-600 hover:scale-105 transition duration-300 group shadow-md">
+                    <img src="volvo.png" alt="Volvo" class="h-10 w-auto object-contain">
+                    <span class="text-xs font-bold text-slate-300 uppercase">Volvo</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 4. FAQJA PËR NE -->
+    <div id="perne-page" class="page-section animate-fade-in">
+        <section class="py-16 max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <span class="text-red-600 text-xs font-extrabold uppercase tracking-widest bg-red-600/10 px-3 py-1 rounded-md border border-red-600/20">RRETH NESH</span>
+                <h2 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">Auto Sallon <span class="text-red-600">Alea</span></h2>
+                <div class="w-20 h-1 bg-red-600 mx-auto rounded-full mt-2"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-white leading-snug">
+                        Përvoja Më e Lartë Automobilistike në Kosovë
+                    </h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Me vite përvojë dhe përkushtim maksimal në tregun e automjeteve luksoze, <strong>Auto Sallon Alea</strong> ju sjell standardet më të larta të cilësisë dhe besueshmërisë. Ne kujdesemi që çdo klient të gjejë makinën e ëndrrave të tij përmes një procesi transparent, të sigurt dhe profesional.
+                    </p>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Ofrojmë zgjidhje fleksibile financiare, mundësi pagese direkte ose përmes leasingut 100% të siguruar në bashkëpunim me institucionet financiare. Çdo automjet në stokun tonë kalon nëpër kontrolle rigoroze teknike dhe vjen me histori të pastër kilometrash dhe dokumentacioni.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="bg-[#0e131d] border border-slate-800 p-6 rounded-3xl space-y-4 shadow-xl hover:border-red-600/50 transition">
+                        <div class="w-12 h-12 bg-red-600/10 border border-red-600/30 rounded-2xl flex items-center justify-center text-red-600 text-xl">
+                            <i class="fa-solid fa-car"></i>
+                        </div>
+                        <h4 class="text-base font-extrabold text-white">Stok Ekskluziv</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">Makinat më prestigjioze gjermane dhe evropiane të përzgjedhura me kujdes të veçantë për ju.</p>
+                    </div>
+
+                    <div class="bg-[#0e131d] border border-slate-800 p-6 rounded-3xl space-y-4 shadow-xl hover:border-red-600/50 transition">
+                        <div class="w-12 h-12 bg-red-600/10 border border-red-600/30 rounded-2xl flex items-center justify-center text-red-600 text-xl">
+                            <i class="fa-solid fa-handshake"></i>
+                        </div>
+                        <h4 class="text-base font-extrabold text-white">Transparencë 100%</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">Garanci e plotë për gjendjen e motorrit, dokumentacionin e rregullt dhe doganën e shlyer.</p>
+                    </div>
+
+                    <div class="bg-[#0e131d] border border-slate-800 p-6 rounded-3xl space-y-4 shadow-xl sm:col-span-2 hover:border-red-600/50 transition">
+                        <div class="w-12 h-12 bg-red-600/10 border border-red-600/30 rounded-2xl flex items-center justify-center text-red-600 text-xl">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <h4 class="text-base font-extrabold text-white">Shërbim Premium Pas Shitjes</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">Ekipi ynë profesional mbetet në dispozicionin tuaj edhe pas blerjes për çdo këshillë, mirëmbajtje apo shërbim shtesë automobilistik.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 5. FAQJA E KONTAKTIT -->
+    <div id="kontakt-page" class="page-section animate-fade-in">
+        <section class="py-16 max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <span class="text-red-600 text-xs font-extrabold uppercase tracking-widest bg-red-600/10 px-3 py-1 rounded-md border border-red-600/20">NA KONTAKTONI</span>
+                <h2 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">Keni Pyetje Apo <span class="text-red-600">Porosi?</span></h2>
+                <p class="text-xs text-slate-400 mt-2">Na shkruani direkt përmes formularit më poshtë ose vizitoni sallonin tonë.</p>
+                <div class="w-20 h-1 bg-red-600 mx-auto rounded-full mt-2"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
+                <!-- Informatat e Kontaktit -->
+                <div class="space-y-6 lg:col-span-1">
+                    <div class="bg-[#0e131d] border border-slate-800 p-6 rounded-3xl space-y-6 shadow-xl">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-red-600/10 border border-red-600/20 rounded-xl flex items-center justify-center text-red-600 text-xl flex-shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-extrabold text-white uppercase tracking-wider">Lokacioni</h4>
+                                <p class="text-xs text-slate-400 mt-1 leading-relaxed">Magjistralja Prishtinë-Mitrovicë-Mazgit, Obiliq 15000</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-red-600/10 border border-red-600/20 rounded-xl flex items-center justify-center text-red-600 text-xl flex-shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-extrabold text-white uppercase tracking-wider">Telefoni</h4>
+                                <p class="text-xs text-slate-400 mt-1">+383 48 838 848 <br> +383 49 403 020</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-red-600/10 border border-red-600/20 rounded-xl flex items-center justify-center text-red-600 text-xl flex-shrink-0">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-extrabold text-white uppercase tracking-wider">Emaili</h4>
+                                <p class="text-xs text-slate-400 mt-1">info@autosallonalea.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulari i Mesazheve -->
+                <div class="lg:col-span-2 bg-[#0e131d] border border-slate-800 p-8 rounded-3xl shadow-2xl">
+                    <form action="https://formspree.io/f/KODI_JUAJ_I_FORMSPREE" method="POST" class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Emri Juaj</label>
+                                <input type="text" name="emri" required placeholder="Shkruani emrin..." class="w-full bg-[#080b11] border border-slate-800 rounded-xl px-4 py-3.5 text-xs text-slate-200 focus:outline-none focus:border-red-600 transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Emaili Juaj</label>
+                                <input type="email" name="email" required placeholder="shembull@gmail.com" class="w-full bg-[#080b11] border border-slate-800 rounded-xl px-4 py-3.5 text-xs text-slate-200 focus:outline-none focus:border-red-600 transition">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Numri i Telefonit</label>
+                                <input type="tel" name="telefoni" placeholder="+383 XX XXX XXX" class="w-full bg-[#080b11] border border-slate-800 rounded-xl px-4 py-3.5 text-xs text-slate-200 focus:outline-none focus:border-red-600 transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Subjekti</label>
+                                <input type="text" name="subjekti" placeholder="P.sh. Interesim për veturë..." class="w-full bg-[#080b11] border border-slate-800 rounded-xl px-4 py-3.5 text-xs text-slate-200 focus:outline-none focus:border-red-600 transition">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Mesazhi</label>
+                            <textarea name="mesazhi" rows="4" required placeholder="Shkruani mesazhin tuaj këtu..." class="w-full bg-[#080b11] border border-slate-800 rounded-xl px-4 py-3.5 text-xs text-slate-200 focus:outline-none focus:border-red-600 transition"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-4 rounded-xl text-xs uppercase tracking-wider transition shadow-lg shadow-red-600/30 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> DËRGO MESAZHIN
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 6. FAQJA E ADMINIT (LOGIN / DASHBOARD) -->
+    <div id="admin-page" class="page-section animate-fade-in">
+        <section class="py-16 max-w-4xl mx-auto px-6">
+            <!-- Formulari i Kyçjes (Login Form) -->
+            <div id="adminLoginForm" class="max-w-xl mx-auto bg-[#0e131d] border border-slate-800 p-8 rounded-3xl shadow-2xl space-y-6">
+                <div class="text-center space-y-2">
+                    <div class="w-12 h-12 bg-red-600/10 border border-red-600/20 rounded-2xl flex items-center justify-center text-red-600 text-2xl mx-auto">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <h2 class="text-2xl font-black text-white uppercase tracking-wider">Paneli i Adminit</h2>
+                    <p class="text-xs text-slate-400">Kyçuni me email-in tuaj administrativ për të menaxhuar faqen.</p>
+                </div>
+
+                <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Email</label>
+                        <input type="email" id="adminEmailInput" required placeholder="autoaleasalon@gmail.com" class="w-full bg-[#080b11] border border-slate-800 rounded-xl px-4 py-3.5 text-xs text-slate-200 focus:outline-none focus:border-red-600 transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">Fjalëkalimi</label>
+                        <input type="password" id="adminPasswordInput" required placeholder="••••••••" class="w-full bg-[#080b11] border border-slate-800 rounded-xl px-4 py-3.5 text-xs text-slate-200 focus:outline-none focus:border-red-600 transition">
+                    </div>
+
+                    <div id="loginErrorMsg" class="hidden text-xs text-red-500 font-bold bg-red-600/10 border border-red-600/30 p-3 rounded-xl text-center">
+                        Gabim gjatë kyçjes: Email ose Fjalëkalimi gabim!
+                    </div>
+
+                    <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-4 rounded-xl text-xs uppercase tracking-wider transition shadow-lg shadow-red-600/30 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-right-to-bracket"></i> KYÇU NË PANEL
+                    </button>
+                </form>
+            </div>
+
+            <!-- Paneli i Menaxhimit të Veturave (Dashboard) -->
+            <div id="adminDashboard" class="hidden space-y-8">
+                <!-- Header Admin -->
+                <div class="bg-[#0e131d] border border-slate-800 p-6 rounded-3xl shadow-2xl flex justify-between items-center">
+                    <div>
+                        <h2 class="text-xl font-bold text-white uppercase">Mirëseerdhët, Admin!</h2>
+                        <p class="text-xs text-emerald-500 font-semibold mt-1"><i class="fa-solid fa-circle-check"></i> I kyçur si autoaleasalon@gmail.com</p>
+                    </div>
+                    <button onclick="handleAdminLogout()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold px-4 py-2 rounded-xl text-xs uppercase tracking-wider transition">
+                        Dalja
+                    </button>
+                </div>
+
+                <!-- Forma për Shtimin ose Ndryshimin e Veturës -->
+                <div class="bg-[#0e131d] border border-slate-800 p-8 rounded-3xl shadow-2xl space-y-6">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                        <h3 id="formSectionTitle" class="text-lg font-bold text-white uppercase">
+                            <i class="fa-solid fa-plus-circle text-red-600 mr-2"></i> Shto Veturë të Re
+                        </h3>
+                        <button id="cancelEditBtn" type="button" onclick="resetFormToCreate()" class="hidden text-xs font-bold text-slate-400 hover:text-white bg-slate-800 px-3 py-1.5 rounded-lg transition">
+                            <i class="fa-solid fa-xmark mr-1"></i> Anulo Ndryshimin
+                        </button>
+                    </div>
+                    
+                    <form id="addCarForm" onsubmit="handleAddOrEditCar(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <input type="hidden" id="editingCarId" value="">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Titulli (p.sh. Audi A6 S-Line)</label>
+                            <input type="text" id="addTitle" required class="w-full bg-[#080b11] border border-slate-800 rounded-xl px-4 py-3 text-xs text-slate-200 focus:outline-none focus:border-red-600">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Nëntitulli (p.sh. Full Extra • RKS)</label>
+                            <input type="text" id="addSub" required class="w-full bg-[#080b11] border border-slate-800 rounded-xl px-4 py-3 text-xs text-slate-200 focus:outline-none focus:border-red-600">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Brendi</label>
+                            <select id="addBrand" required class="w-full bg-[#080b11] border border-slate-800 rounded-xl px-4 py-3 text-xs text-slate-200 focus:outline-none focus:border-red-600">
+                                <option value="mercedes">Mercedes-Benz</option>
+                                <option value="bmw">BMW</option>
+                                <option value="audi">Audi</option>
+                                <option value="volkswagen">Volkswagen</option>
+                                <option value="rangerover">Range Rover</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Viti</label>
+                            <input type="number" id="addYear" required min="1990" max="2027" class="w-full bg-[#080b11] border border-slate-800 rounded-xl px-4 py-3 text-xs text-slate-200 focus:outline-none focus:border-red-600">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Kilometrat (p.sh. 180,000 km)</label>
+                            <input type="text" id="addKm" required class="w-full bg-[#080b11] border border-slate-800 rounded-xl px-4 py-3 text-xs text-slate-200 focus:outline-none focus:border-red-600">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Karburanti</label>
+                            <select id="addFuel" required class="w-full bg-[#080b11] border border-slate-800 rounded-xl px-4 py-3 text-xs text-slate-200 focus:outline-none focus:border-red-600">
+                                <option value="nafte">Naftë (Diesel)</option>
+                                <option value="benzine">Benzinë</option>
+                                <option value="hibrid">Hibrid</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Transmisioni</label>
+                            <select id="addGear" required class="w-full bg-[#080b11] border border-slate-800 rounded-xl px-4 py-3 text-xs text-slate-200 focus:outline-none focus:border-red-600">
+                                <option value="automatik">Automatik</option>
+                                <option value="manual">Manual</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Teksti i Çmimit (p.sh. 18,500 € ose Me Doganë)</label>
+                            <input type="text" id="addPriceText" required class="w-full bg-[#080b11] border border-slate-800 rounded-xl px-4 py-3 text-xs text-slate-200 focus:outline-none focus:border-red-600">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Çmimi Numerik € (Për filtrim, p.sh. 18500)</label>
+                            <input type="number" id="addNumericPrice" required class="w-full bg-[#080b11] border border-slate-800 rounded-xl px-4 py-3 text-xs text-slate-200 focus:outline-none focus:border-red-600">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Foto URL (të ndara me presje)</label>
+                            <input type="text" id="addImages" required placeholder="foto1.jpg, foto2.jpg" class="w-full bg-[#080b11] border border-slate-800 rounded-xl px-4 py-3 text-xs text-slate-200 focus:outline-none focus:border-red-600">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-bold text-slate-300 uppercase mb-1">Përshkrimi i Plotë</label>
+                            <textarea id="addDesc" rows="3" required class="w-full bg-[#080b11] border border-slate-800 rounded-xl px-4 py-3 text-xs text-slate-200 focus:outline-none focus:border-red-600"></textarea>
+                        </div>
+                        <div class="sm:col-span-2 pt-2">
+                            <button id="submitCarBtn" type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded-xl text-xs uppercase tracking-wider transition shadow-lg shadow-red-600/30">
+                                <i class="fa-solid fa-plus mr-1"></i> Ruaj Veturën në Stok
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Lista e Veturave të Stokut për Adminin (Me Opsion Ndryshimi dhe Fshirjeje) -->
+                <div class="bg-[#0e131d] border border-slate-800 p-8 rounded-3xl shadow-2xl space-y-6">
+                    <h3 class="text-lg font-bold text-white uppercase border-b border-slate-800 pb-3"><i class="fa-solid fa-list-check text-red-600 mr-2"></i> Menaxho Veturat Ekzistuese</h3>
+                    <div id="adminCarsList" class="space-y-3 max-h-[500px] overflow-y-auto pr-2">
+                        <!-- Lista do të renderohed këtu -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#040609] border-t border-slate-800/80 pt-16 pb-8 text-slate-400">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+            <div class="space-y-4">
+                <span class="text-xl font-black text-white italic">AUTO SALLON <span class="text-red-600">ALEA</span></span>
+                <p class="text-xs text-slate-400 leading-relaxed">Përvoja Automobilistike Luksoze në Kosovë. Zgjedhja juaj e parë për vetura premium.</p>
+            </div>
+            <div class="space-y-3">
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider">Menu</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><button onclick="showPage('home-page')" class="hover:text-red-600 transition">HOME</button></li>
+                    <li><button onclick="showPage('vetura-page')" class="hover:text-red-600 transition">VETURA</button></li>
+                    <li><button onclick="showPage('brendet-page')" class="hover:text-red-600 transition">BRENDET</button></li>
+                    <li><button onclick="showPage('perne-page')" class="hover:text-red-600 transition">PËR NE</button></li>
+                    <li><button onclick="showPage('kontakt-page')" class="hover:text-red-600 transition">KONTAKT</button></li>
+                    <li><button onclick="showPage('admin-page')" class="hover:text-red-600 transition text-red-500">ADMIN</button></li>
+                </ul>
+            </div>
+            <div class="space-y-3">
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider">Kontakt</h4>
+                <ul class="space-y-2.5 text-xs">
+                    <li><i class="fa-solid fa-location-dot text-red-600 mr-2"></i> Magjistralja Prishtinë-Mitrovicë-Mazgit, Obiliq 15000</li>
+                    <li><i class="fa-solid fa-phone text-red-600 mr-2"></i> 048 838 848 / 049 403 020</li>
+                </ul>
+            </div>
+            <div class="space-y-3">
+                <h4 class="text-sm font-bold text-white uppercase tracking-wider">Na Ndiqni</h4>
+                <div class="flex items-center gap-3 pt-2">
+                    <a href="https://instagram.com" target="_blank" class="w-10 h-10 bg-[#0e131d] border border-slate-800 rounded-xl flex items-center justify-center text-slate-300 hover:text-white hover:bg-red-600 transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://facebook.com" target="_blank" class="w-10 h-10 bg-[#0e131d] border border-slate-800 rounded-xl flex items-center justify-center text-slate-300 hover:text-white hover:bg-red-600 transition"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://tiktok.com" target="_blank" class="w-10 h-10 bg-[#0e131d] border border-slate-800 rounded-xl flex items-center justify-center text-slate-300 hover:text-white hover:bg-red-600 transition"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 border-t border-slate-800/80 pt-6 text-center text-xs text-slate-500">
+            <p>&copy; 2026 Auto Sallon Alea. Të gjitha të drejtat të rezervuara.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPT -->
+    <script>
+        const initialCarsData = {
+            1: {
+                id: 1,
+                brand: "mercedes",
+                title: "Mercedes GLE 350 AMG-LINE",
+                sub: "7 Ulse • Komplet I Servisuar",
+                images: ["MOTO_1_1.jpg", "MOTO_1_2.jpg", "MOTO_1_3.jpg", "MOTO_1_4.jpg", "MOTO_1_5.jpg", "MOTO_1_6.jpg"],
+                price: "Me Doganë",
+                numericPrice: 60000,
+                year: 2020,
+                km: "240,000 km",
+                gear: "automatik",
+                fuel: "nafte",
+                desc: "Mercedes GLE 350 AMG-Line në gjendje të shkëlqyer me 7 ulëse, tavan panoramik, sistem navigimi kamerë 360 shkallë, ulëse me ngrohje dhe memorie."
+            },
+            2: {
+                id: 2,
+                brand: "mercedes",
+                title: "Mercedes-Benz S 350 Cdi",
+                sub: "Full Extra • Komplet I Servisuar",
+                images: ["MOTO_2_1.jpg", "MOTO_2_2.jpg", "MOTO_2_3.jpg", "MOTO_2_4.jpg", "MOTO_2_5.jpg", "MOTO_2_6.jpg"],
+                price: "Me Doganë",
+                numericPrice: 85000,
+                year: 2022,
+                km: "120,000 km",
+                gear: "automatik",
+                fuel: "nafte",
+                desc: "Klasa S luksoze me pajisje maksimalisht full extra: Burmester Sound System, ulëse me masazh, ngrohje dhe ftohje, drita Digital Light."
+            },
+            3: {
+                id: 3,
+                brand: "mercedes",
+                title: "Mercedes C 220 Coupe",
+                sub: "RKS 7 Muj • Bluetec",
+                images: ["MOTO_3_1.jpg", "MOTO_3_2.jpg", "MOTO_3_3.jpg", "MOTO_3_4.jpg", "MOTO_3_5.jpg", "MOTO_3_6.jpg"],
+                price: "21,999 €",
+                numericPrice: 21999,
+                year: 2018,
+                km: "140,000 km",
+                gear: "automatik",
+                fuel: "nafte",
+                desc: "Model sportive Coupe shumë atraktive. Me regjistrim RKS edhe 7 muaj, AMG paketa e jashtme dhe brendshme, ulëse lekurë."
+            },
+            4: {
+                id: 4,
+                brand: "mercedes",
+                title: "Mercedes-Benz G 63 AMG",
+                sub: "Full Extra • Gjendje Perfekte",
+                images: ["MOTO_4_1.jpg", "MOTO_4_2.jpg", "MOTO_4_3.jpg", "MOTO_4_4.jpg", "MOTO_4_5.jpg", "MOTO_4_6.jpg"],
+                price: "Me Doganë",
+                numericPrice: 180000,
+                year: 2024,
+                km: "90,000 km",
+                gear: "automatik",
+                fuel: "benzine",
+                desc: "Super mjet luksoz dhe me fuqi të lartë AMG V8 BiTurbo. Zëri legjendar AMG exhaust, ngjyrë speciale mat."
+            },
+            5: {
+                id: 5,
+                brand: "rangerover",
+                title: "Range Rover Sport HSE",
+                sub: "305 HP • Full Extra",
+                images: ["MOTO_5_1.jpg", "MOTO_5_2.jpg", "MOTO_5_3.jpg", "MOTO_5_4.jpg", "MOTO_5_5.jpg", "MOTO_5_6.jpg"],
+                price: "24,999 €",
+                numericPrice: 24999,
+                year: 2017,
+                km: "200,000 km",
+                gear: "automatik",
+                fuel: "nafte",
+                desc: "Range Rover Sport me motorr të fuqishëm 305 kuaj fuqi, tavan panoramik, sistem zëri Meridian, pezullim elektronik me ajër."
+            },
+            6: {
+                id: 6,
+                brand: "audi",
+                title: "Audi A7 50TDI Matrix",
+                sub: "RKS 1 Vit • Full Extra",
+                images: ["MOTO_6_1.jpg", "MOTO_6_2.jpg", "MOTO_6_3.jpg", "MOTO_6_4.jpg", "MOTO_6_5.jpg", "MOTO_6_6.jpg"],
+                price: "15,999 €",
+                numericPrice: 15999,
+                year: 2016,
+                km: "310,000 km",
+                gear: "automatik",
+                fuel: "nafte",
+                desc: "Audi A7 Sportback me drita teknologjike Matrix, regjistrim i porsavazhduar 1 vit RKS, marsho 8-shkallësh S-Tronic."
+            },
+            7: {
+                id: 7,
+                brand: "audi",
+                title: "Audi A8 60 TDI Matrix",
+                sub: "Me Doganë • Full Extra",
+                images: ["MOTO_7_1.jpg", "MOTO_7_2.jpg", "MOTO_7_3.jpg", "MOTO_7_4.jpg", "MOTO_7_5.jpg", "MOTO_7_6.jpg"],
+                price: "23,999 €",
+                numericPrice: 23999,
+                year: 2016,
+                km: "280,000 km",
+                gear: "automatik",
+                fuel: "nafte",
+                desc: "Limuzina e klasit luksoz Audi A8 60 TDI Quattro. Brendësi ekskluzive me lëkurë, drita LED Matrix, sistem zërimi Bang & Olufsen."
+            },
+            8: {
+                id: 8,
+                brand: "volkswagen",
+                title: "VW Polo 1.8 GTI",
+                sub: "230 PS DSG • Guma të Reja",
+                images: ["MOTO_8_1.jpg", "MOTO_8_2.jpg", "MOTO_8_3.jpg", "MOTO_8_4.jpg", "MOTO_8_5.jpg", "MOTO_8_6.jpg"],
+                price: "Me Doganë",
+                numericPrice: 12500,
+                year: 2016,
+                km: "210,000 km",
+                gear: "automatik",
+                fuel: "benzine",
+                desc: "Vetura ideale sportive kompakte! Polo GTI 1.8 Turbo me marsho DSG me 7 shkallë, 230 kuaj fuqi, guma të reja verore."
+            },
+            9: {
+                id: 9,
+                brand: "bmw",
+                title: "BMW X6 30d M-Packet",
+                sub: "Full Extra • Gjendje Ideale",
+                images: ["MOTO_9_1.jpg", "MOTO_9_2.jpg", "MOTO_9_3.jpg", "MOTO_9_4.jpg", "MOTO_9_5.jpg", "MOTO_9_6.jpg"],
+                price: "Me Doganë",
+                numericPrice: 55000,
+                year: 2020,
+                km: "120,000 km",
+                gear: "automatik",
+                fuel: "nafte",
+                desc: "BMW X6 M-Sport me pamje jashtëzakonisht agresive. XDrive katër rrota aktiv, drita BMW Laser, timon M."
+            },
+            10: {
+                id: 10,
+                brand: "mercedes",
+                title: "Mercedes CLA 220 Cdi",
+                sub: "4Matic • Komplet I Servisuar",
+                images: ["MOTO_10_1.jpg", "MOTO_10_2.jpg", "MOTO_10_3.jpg", "MOTO_10_4.jpg", "MOTO_10_5.jpg", "MOTO_10_6.jpg"],
+                price: "Me Doganë",
+                numericPrice: 18500,
+                year: 2017,
+                km: "210,000 km",
+                gear: "automatik",
+                fuel: "nafte",
+                desc: "Mercedes-Benz CLA 220d me tërheqje integrale 4Matic, pako AMG, drita LED High Performance, ulëse sportive."
+            },
+            11: {
+                id: 11,
+                brand: "bmw",
+                title: "BMW 320d M-Packet",
+                sub: "Facelift • xDrive • Full",
+                images: ["MOTO_11_1.jpg", "MOTO_11_2.jpg", "MOTO_11_3.jpg", "MOTO_11_4.jpg", "MOTO_11_5.jpg", "MOTO_11_6.jpg"],
+                price: "15,499 €",
+                numericPrice: 15499,
+                year: 2018,
+                km: "240,000 km",
+                gear: "automatik",
+                fuel: "nafte",
+                desc: "BMW Seria 3 LCI Facelift me pako M origjinale nga fabrika, tërheqje xDrive, navigacion i madh profesional."
+            },
+            12: {
+                id: 12,
+                brand: "bmw",
+                title: "BMW X4 2.0d xDrive",
+                sub: "Facelift • Full Extra",
+                images: ["MOTO_12_1.jpg", "MOTO_12_2.jpg", "MOTO_12_3.jpg", "MOTO_12_4.jpg", "MOTO_12_5.jpg", "MOTO_12_6.jpg"],
+                price: "Me Doganë",
+                numericPrice: 28000,
+                year: 2017,
+                km: "220,000 km",
+                gear: "automatik",
+                fuel: "nafte",
+                desc: "BMW X4 Coupe SUV me tërheqje xDrive, ngjyrë e veçantë, kamera parkimi, tavan panoramik xhami."
+            },
+            13: {
+                id: 13,
+                brand: "mercedes",
+                title: "Mercedes C 220 Coupe",
+                sub: "RKS 4 Muj • BlueTEC",
+                images: ["MOTO_13_1.jpg", "MOTO_13_2.jpg", "MOTO_13_3.jpg", "MOTO_13_4.jpg", "MOTO_13_5.jpg", "MOTO_13_6.jpg"],
+                price: "9,999 €",
+                numericPrice: 9999,
+                year: 2014,
+                km: "330,000 km",
+                gear: "automatik",
+                fuel: "nafte",
+                desc: "Mercedes-Benz C 220 Coupe me çmim mjaft të arsyeshëm. Me regjistrim 4 muaj RKS, marsho automatik 7G-Tronic."
+            }
+        };
+
+        // Leximi nga LocalStorage ose inicializimi
+        let carsData = JSON.parse(localStorage.getItem('alea_cars')) || initialCarsData;
+
+        function saveCarsToStorage() {
+            localStorage.setItem('alea_cars', JSON.stringify(carsData));
+            renderTopCars();
+            filterCars();
+            renderAdminCars();
+        }
+
+        let currentCarId = null;
+        let currentImageIndex = 0;
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('hidden');
+            if(menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            }
+        }
+
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(page => page.classList.remove('active'));
+
+            const targetPage = document.getElementById(pageId);
+            if(targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                btn.classList.remove('text-red-600', 'border-b-2', 'border-red-600', 'pb-1');
+            });
+
+            const activeBtn = document.getElementById('nav-' + pageId);
+            if(activeBtn && pageId !== 'admin-page') {
+                activeBtn.classList.add('text-red-600', 'border-b-2', 'border-red-600', 'pb-1');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function handleAdminLogin(event) {
+            event.preventDefault();
+            const emailInput = document.getElementById('adminEmailInput').value.trim();
+            const allowedAdminEmail = "autoaleasalon@gmail.com";
+            const errorMsg = document.getElementById('loginErrorMsg');
+
+            if (emailInput === allowedAdminEmail) {
+                errorMsg.classList.add('hidden');
+                document.getElementById('adminLoginForm').classList.add('hidden');
+                document.getElementById('adminDashboard').classList.remove('hidden');
+                renderAdminCars();
+            } else {
+                errorMsg.classList.remove('hidden');
+            }
+        }
+
+        function handleAdminLogout() {
+            document.getElementById('adminLoginForm').classList.remove('hidden');
+            document.getElementById('adminDashboard').classList.add('hidden');
+            document.getElementById('adminEmailInput').value = '';
+            document.getElementById('adminPasswordInput').value = '';
+            resetFormToCreate();
+        }
+
+        function handleAddOrEditCar(event) {
+            event.preventDefault();
+            const editingId = document.getElementById('editingCarId').value;
+            const imagesInput = document.getElementById('addImages').value.split(',').map(img => img.trim()).filter(img => img !== '');
+
+            const carPayload = {
+                id: editingId ? parseInt(editingId) : Date.now(),
+                title: document.getElementById('addTitle').value.trim(),
+                sub: document.getElementById('addSub').value.trim(),
+                brand: document.getElementById('addBrand').value,
+                year: parseInt(document.getElementById('addYear').value),
+                km: document.getElementById('addKm').value.trim(),
+                fuel: document.getElementById('addFuel').value,
+                gear: document.getElementById('addGear').value,
+                price: document.getElementById('addPriceText').value.trim(),
+                numericPrice: parseFloat(document.getElementById('addNumericPrice').value),
+                images: imagesInput.length > 0 ? imagesInput : ["hero-bg.jpg"],
+                desc: document.getElementById('addDesc').value.trim()
+            };
+
+            carsData[carPayload.id] = carPayload;
+            saveCarsToStorage();
+
+            if (editingId) {
+                alert("Vetura u ndryshua me sukses!");
+                resetFormToCreate();
+            } else {
+                alert("Vetura u shtua me sukses!");
+                document.getElementById('addCarForm').reset();
+            }
+        }
+
+        function editCar(id) {
+            const car = carsData[id];
+            if (!car) return;
+
+            document.getElementById('editingCarId').value = car.id;
+            document.getElementById('addTitle').value = car.title || '';
+            document.getElementById('addSub').value = car.sub || '';
+            document.getElementById('addBrand').value = car.brand || 'mercedes';
+            document.getElementById('addYear').value = car.year || '';
+            document.getElementById('addKm').value = car.km || '';
+            document.getElementById('addFuel').value = car.fuel || 'nafte';
+            document.getElementById('addGear').value = car.gear || 'automatik';
+            document.getElementById('addPriceText').value = car.price || '';
+            document.getElementById('addNumericPrice').value = car.numericPrice || '';
+            document.getElementById('addImages').value = car.images ? car.images.join(', ') : '';
+            document.getElementById('addDesc').value = car.desc || '';
+
+            document.getElementById('formSectionTitle').innerHTML = `<i class="fa-solid fa-pen-to-square text-red-600 mr-2"></i> Ndrysho Veturën: ${car.title}`;
+            document.getElementById('submitCarBtn').innerHTML = `<i class="fa-solid fa-floppy-disk mr-1"></i> Ruaj Ndryshimet`;
+            document.getElementById('cancelEditBtn').classList.remove('hidden');
+
+            document.getElementById('addCarForm').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function resetFormToCreate() {
+            document.getElementById('editingCarId').value = '';
+            document.getElementById('addCarForm').reset();
+            document.getElementById('formSectionTitle').innerHTML = `<i class="fa-solid fa-plus-circle text-red-600 mr-2"></i> Shto Veturë të Re`;
+            document.getElementById('submitCarBtn').innerHTML = `<i class="fa-solid fa-plus mr-1"></i> Ruaj Veturën në Stok`;
+            document.getElementById('cancelEditBtn').classList.add('hidden');
+        }
+
+        function deleteCar(id) {
+            if(confirm("A jeni të sigurt që dëshironi ta fshini këtë veturë?")) {
+                delete carsData[id];
+                if (document.getElementById('editingCarId').value == id) {
+                    resetFormToCreate();
+                }
+                saveCarsToStorage();
+            }
+        }
+
+        function renderAdminCars() {
+            const container = document.getElementById('adminCarsList');
+            if(!container) return;
+            container.innerHTML = '';
+
+            const carsList = Object.values(carsData);
+            if(carsList.length === 0) {
+                container.innerHTML = `<p class="text-xs text-slate-500">Nuk ka asnjë veturë në stok.</p>`;
+                return;
+            }
+
+            carsList.forEach(car => {
+                const item = `
+                    <div class="flex items-center justify-between bg-[#080b11] p-3 rounded-xl border border-slate-800">
+                        <div class="flex items-center gap-3">
+                            <img src="${car.images[0]}" class="w-12 h-12 object-cover rounded-lg" alt="">
+                            <div>
+                                <h4 class="text-xs font-bold text-white">${car.title}</h4>
+                                <p class="text-[10px] text-slate-400">${car.year} • ${car.price}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="editCar(${car.id})" class="bg-amber-600/20 hover:bg-amber-600 text-amber-500 hover:text-white px-3 py-1.5 rounded-lg text-xs font-bold transition">
+                                <i class="fa-solid fa-pen-to-square mr-1"></i> Ndrysho
+                            </button>
+                            <button onclick="deleteCar(${car.id})" class="bg-red-600/20 hover:bg-red-600 text-red-500 hover:text-white px-3 py-1.5 rounded-lg text-xs font-bold transition">
+                                <i class="fa-solid fa-trash mr-1"></i> Fshij
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += item;
+            });
+        }
+
+        function renderTopCars() {
+            const grid = document.getElementById('topCarsGrid');
+            if(!grid) return;
+            grid.innerHTML = '';
+
+            const topFour = Object.values(carsData).slice(0, 4);
+
+            topFour.forEach((car, index) => {
+                const fuelText = car.fuel === 'nafte' ? 'Diesel' : (car.fuel === 'benzine' ? 'Benzinë' : 'Hibrid');
+                const gearText = car.gear === 'automatik' ? 'Automatik' : 'Manual';
+
+                const card = `
+                    <div onclick="openModal(${car.id})" class="cursor-pointer bg-[#0e131d] rounded-2xl overflow-hidden border border-slate-800 hover:border-red-600 transition-all duration-300 group flex flex-col justify-between hover:-translate-y-2 shadow-lg">
+                        <div>
+                            <div class="h-56 bg-slate-900 relative overflow-hidden">
+                                <img src="${car.images[0]}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="${car.title}">
+                                <span class="absolute top-3 right-3 bg-red-600 text-white font-extrabold text-xs px-3 py-1 rounded-full shadow-lg">${car.price}</span>
+                                <span class="absolute top-3 left-3 bg-black/70 backdrop-blur-md text-red-500 font-bold text-[10px] px-2.5 py-1 rounded-md border border-red-600/30 uppercase">TOP ${index + 1}</span>
+                            </div>
+                            <div class="p-5 space-y-3">
+                                <h3 class="text-base font-bold text-white truncate group-hover:text-red-500 transition">${car.title}</h3>
+                                <p class="text-[11px] text-slate-400 font-semibold">${car.sub}</p>
+                                <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-400 border-t border-slate-800/80 pt-3">
+                                    <span><i class="fa-solid fa-calendar text-red-600 mr-1.5"></i> ${car.year}</span>
+                                    <span><i class="fa-solid fa-gauge-high text-red-600 mr-1.5"></i> ${car.km}</span>
+                                    <span><i class="fa-solid fa-gears text-red-600 mr-1.5"></i> ${gearText}</span>
+                                    <span><i class="fa-solid fa-gas-pump text-red-600 mr-1.5"></i> ${fuelText}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += card;
+            });
+        }
+
+        function filterCars() {
+            const brand = document.getElementById('filterBrand').value.toLowerCase();
+            const year = document.getElementById('filterYear').value;
+            const fuel = document.getElementById('filterFuel').value.toLowerCase();
+            const gear = document.getElementById('filterGear').value.toLowerCase();
+            const maxPrice = parseFloat(document.getElementById('priceRange').value);
+
+            const grid = document.getElementById('carsGrid');
+            const noResults = document.getElementById('noResults');
+            if(!grid) return;
+            grid.innerHTML = '';
+
+            let count = 0;
+
+            Object.values(carsData).forEach(car => {
+                const matchBrand = !brand || car.brand === brand;
+                const matchYear = !year || car.year >= parseInt(year);
+                const matchFuel = !fuel || car.fuel === fuel;
+                const matchGear = !gear || car.gear === gear;
+                const matchPrice = car.numericPrice <= maxPrice;
+
+                if (matchBrand && matchYear && matchFuel && matchGear && matchPrice) {
+                    count++;
+                    const fuelText = car.fuel === 'nafte' ? 'Diesel' : (car.fuel === 'benzine' ? 'Benzinë' : 'Hibrid');
+                    const gearText = car.gear === 'automatik' ? 'Automatik' : 'Manual';
+
+                    const card = `
+                        <div onclick="openModal(${car.id})" class="cursor-pointer bg-[#0e131d] rounded-2xl overflow-hidden border border-slate-800 hover:border-red-600/80 transition-all duration-300 group hover:-translate-y-2 shadow-lg animate-fade-in">
+                            <div class="h-56 bg-slate-900 relative overflow-hidden">
+                                <img src="${car.images[0]}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="${car.title}">
+                                <span class="absolute top-3 right-3 bg-red-600 text-white font-extrabold text-xs px-3 py-1 rounded-full shadow-lg">${car.price}</span>
+                            </div>
+                            <div class="p-5 space-y-3">
+                                <h3 class="text-base font-bold text-white truncate group-hover:text-red-500 transition">${car.title}</h3>
+                                <p class="text-[11px] text-slate-400 font-semibold">${car.sub}</p>
+                                <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-400 border-t border-slate-800/80 pt-3">
+                                    <span><i class="fa-solid fa-calendar text-red-600 mr-1.5"></i> ${car.year}</span>
+                                    <span><i class="fa-solid fa-gauge-high text-red-600 mr-1.5"></i> ${car.km}</span>
+                                    <span><i class="fa-solid fa-gears text-red-600 mr-1.5"></i> ${gearText}</span>
+                                    <span><i class="fa-solid fa-gas-pump text-red-600 mr-1.5"></i> ${fuelText}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    grid.innerHTML += card;
+                }
+            });
+
+            document.getElementById('carCount').innerText = `Gjithsej: ${count} Vetura`;
+
+            if (count === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+
+        function resetFilters() {
+            document.getElementById('filterBrand').value = '';
+            document.getElementById('filterYear').value = '';
+            document.getElementById('filterFuel').value = '';
+            document.getElementById('filterGear').value = '';
+            document.getElementById('priceRange').value = 250000;
+            document.getElementById('priceValue').innerText = '250,000 €';
+            filterCars();
+        }
+
+        function openModal(id) {
+            const car = carsData[id];
+            if(!car) return;
+
+            currentCarId = id;
+            currentImageIndex = 0;
+            updateModalContent();
+
+            document.getElementById('carModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function updateModalContent() {
+            const car = carsData[currentCarId];
+            const fuelText = car.fuel === 'nafte' ? 'Diesel' : (car.fuel === 'benzine' ? 'Benzinë' : 'Hibrid');
+            const gearText = car.gear === 'automatik' ? 'Automatik' : 'Manual';
+
+            document.getElementById('modalTitle').innerText = car.title;
+            document.getElementById('modalSub').innerText = car.sub;
+            document.getElementById('modalImg').src = car.images[currentImageIndex];
+            document.getElementById('imgCounter').innerText = `${currentImageIndex + 1} / ${car.images.length}`;
+            document.getElementById('modalPrice').innerText = car.price;
+            document.getElementById('modalYear').innerText = car.year;
+            document.getElementById('modalKm').innerText = car.km;
+            document.getElementById('modalGear').innerText = gearText;
+            document.getElementById('modalFuel').innerText = fuelText;
+            document.getElementById('modalDesc').innerText = car.desc;
+            
+            document.getElementById('modalWhatsapp').href = `https://wa.me/38348838848?text=P%C3%ABrsh%C3%ABndetje%20Auto%20Sallon%20Alea,%20jam%20i%20interesuar%20p%C3%ABr%20vetur%C3%in:%20${encodeURIComponent(car.title)}`;
+        }
+
+        function nextCarImage() {
+            const car = carsData[currentCarId];
+            currentImageIndex = (currentImageIndex + 1) % car.images.length;
+            updateModalContent();
+        }
+
+        function prevCarImage() {
+            const car = carsData[currentCarId];
+            currentImageIndex = (currentImageIndex - 1 + car.images.length) % car.images.length;
+            updateModalContent();
+        }
+
+        function closeModal() {
+            document.getElementById('carModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('carModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            renderTopCars();
+            filterCars();
+        });
+    </script>
+</body>
+</html>
